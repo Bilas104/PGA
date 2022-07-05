@@ -277,7 +277,7 @@ class failed_attempt_log(login_attempt_log):
         if r_p > r_c:
             usr.blocked = True
 
-weak_passwords = pd.read_csv(r'C:\Users\Bilas\vscode\Projects\PGA\weak_pwds.txt', header = None)
+weak_passwords = pd.read_csv(r'.\weak_pwds.txt', header = None)
 
 weak_pwd = {}
 
@@ -285,7 +285,7 @@ for pwd in weak_passwords.iloc[:][0]:
     weight = 0.1
     weak_pwd[pwd] = weight
 
-filename = r'C:\Users\Bilas\vscode\Projects\PGA\users.csv'
+filename = r'.\users.csv'
 usr_df = pd.read_csv(filename)
 user_list = list(usr_df['Username'])
 usr_df['old_pwd'] = usr_df['old_pwd'].apply(eval)
@@ -295,7 +295,7 @@ usr_dict = {}
 for i in range(len(usr_df)):
     usr_dict[user_list[i]] = user(user_list[i], usr_df.loc[i, 'Password'], usr_df.loc[i, 'old_pwd'], usr_df.loc[i, 'dur'])
 
-filename = r'C:\Users\Bilas\vscode\Projects\PGA\login_data.csv'
+filename = r'.\login_data.csv'
 login_df = pd.read_csv(filename)
 login_df['time'] = pd.to_datetime(login_df['time'])
 
@@ -327,7 +327,7 @@ for i in range(100):
         usr_dict[login_df.loc[i, 'usr']].login(login_df.loc[i, 'origin'], login_df.loc[i, 'ISP'], login_df.loc[i, 'country'],
                                                 login_df.loc[i, 'time'])
 
-filename = r'C:\Users\Bilas\vscode\Projects\PGA\test_data.csv'
+filename = r'.\test_data.csv'
 test_df = pd.read_csv(filename)
 test_df['datetime'] = pd.to_datetime(test_df['datetime'])
 
